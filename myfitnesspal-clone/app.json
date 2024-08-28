@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "myfitnesspal-clone",
+    "slug": "myfitnesspal-clone",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "99cbd1f2-75f6-4c84-b8ab-bb1b1af98fc0"
+      }
+    },
+    "owner": "sasus24"
+  }
+}
