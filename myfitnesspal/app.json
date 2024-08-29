@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "myfitnesspal-clone",
-    "slug": "myfitnesspal-clone",
+    "name": "myfitnesspal",
+    "slug": "myfitnesspal",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,12 +22,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "99cbd1f2-75f6-4c84-b8ab-bb1b1af98fc0"
-      }
-    },
-    "owner": "sasus24"
+    }
   }
 }
