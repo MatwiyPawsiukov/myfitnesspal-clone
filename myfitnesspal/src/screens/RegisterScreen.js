@@ -1,66 +1,55 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
+import styles from './styles/RegisterScreenStyles';
 
 const RegisterScreen = ({ navigation }) => {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleChange = (name, value) => {
-    setForm({ ...form, [name]: value });
-  };
-
-  const handleRegister = async () => {
-    try {
-      await axios.post('http://localhost:3000/api/register', form);
-      Alert.alert('Success', 'You have registered successfully');
-      navigation.navigate('Login');
-    } catch (error) {
-      Alert.alert('Error', 'Registration failed');
-    }
+  const handleRegister = () => {
+    axios.post('http://localhost:3000/api/register', { email, password })
+      .then(response => {
+        Alert.alert('Success', 'You have registered successfully');
+        navigation.navigate('Login');
+      })
+      .catch(error => {
+        Alert.alert('Error', 'Registration failed');
+      });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Email:</Text>
-      <TextInput
-        style={styles.input}
-        value={form.email}
-        onChangeText={(value) => handleChange('email', value)}
-        placeholder="Enter your email"
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <Text style={styles.label}>Password:</Text>
-      <TextInput
-        style={styles.input}
-        value={form.password}
-        onChangeText={(value) => handleChange('password', value)}
-        placeholder="Enter your password"
-        secureTextEntry
-        autoCapitalize="none"
-      />
-      <Button title="Register" onPress={handleRegister} />
+      <View style={styles.form}>
+        <Text style={styles.heading}>Sign Up</Text>
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+          placeholder="E-mail"
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Password"
+          secureTextEntry
+          autoCapitalize="none"
+        />
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.loginButtonText}>Already have an account? Log In</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={styles.agreement}>
+        <Text onPress={() => { /* навігація на сторінку угоди */ }}>Learn user licence agreement</Text>
+      </Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    marginBottom: 20,
-    borderRadius: 5,
-  },
-});
 
 export default RegisterScreen;
