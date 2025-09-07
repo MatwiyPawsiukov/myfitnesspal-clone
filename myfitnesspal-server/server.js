@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.json()); 
 
-mongoose.connect('mongodb+srv://myfitnesspal:myfitnesspal@myfitnesspal.vddf0.mongodb.net/?retryWrites=true&w=majority&appName=myfitnesspal', {
+mongoose.connect('', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
